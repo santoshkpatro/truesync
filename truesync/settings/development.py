@@ -1,9 +1,26 @@
+import os
 from datetime import timedelta
+from dotenv import load_dotenv
 from . base import *
 
+load_dotenv()
 
 # CORS Config
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('PG_NAME', 'truesync_development'),
+        'USER': os.environ.get('PG_USER', 'postgres'),
+        'PASSWORD': os.environ.get('PG_PASSWORD', '12345'),
+        'HOST': os.environ.get('PG_HOST', 'localhost'),
+        'PORT': os.environ.get('PG_PORT', '5432'),
+    }
+}
+
 
 # JWT Configuration
 SIMPLE_JWT = {
